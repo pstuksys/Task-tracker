@@ -1,9 +1,10 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import { useState } from "react"
+import Task from "./components/Task";
 
 
-function App() {
+const App = () => {
   const [tasks, setTasks] = useState([
     {
         id: 1,
@@ -27,13 +28,19 @@ function App() {
         reminder: false,
     }
 ]);
+//delete task
+const deleteTask = (id) =>{
+  setTasks(tasks.filter((task)=>task.id !==id))
+}
 
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks}/>
+      <Tasks tasks={tasks} 
+        onDelete={deleteTask}/>
     </div>
   );
 }
+
 
 export default App;
